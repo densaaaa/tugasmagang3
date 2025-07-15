@@ -5,7 +5,7 @@ include '../function/Fobat.php';
 include '../function/validasi.php';
 
 $obat = new Obat($db);
-$v = new Validasi(); // ← tidak pakai argumen, karena kamu tidak punya constructor
+$v = new Validasi();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $aksi = $_POST['aksi'];
