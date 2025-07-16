@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $data = [
         'nama_kategori' => $_POST['nama_kategori'],
         'kode_kategori' => $_POST['kode_kategori'],
-        'status' => $_POST['status']
+        'status' => intval($_POST['status']) // convert ke integer
     ];
 
     $pesan = $kategori->simpan($data);
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <label for="status" class="form-label">Status</label>
                 <select name="status" id="status" class="form-select" required>
                     <option value="aktif">Aktif</option>
-                    <option value="nonaktif">Nonaktif</option>
+                    <option value="0">Nonaktif</option>
                 </select>
             </div>
 

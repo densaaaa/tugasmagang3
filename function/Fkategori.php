@@ -30,25 +30,25 @@ class Kategori {
         $stmt = $this->conn->prepare(
             "INSERT INTO kategori_obat (nama_kategori, kode_kategori, status) VALUES (?, ?, ?)"
         );
-        $stmt->bind_param("sss", $d['nama_kategori'], $d['kode_kategori'], $d['status']);
+        $stmt->bind_param("ssi", $d['nama_kategori'], $d['kode_kategori'], $d['status']); // status INT
         return $stmt->execute() ? "OK" : "Gagal simpan kategori";
     }
 
-    // Ambil kategori
+    // Ambil semua kategori
     function getAll() {
-        $q = $this->conn->query("SELECT * FROM kategori_obat ORDER BY id DESC");
+        $q = $this->conn->query("SELECT * FROM kategori_obat ORDER BY id_kategori DESC");
         return $q->fetch_all(MYSQLI_ASSOC);
     }
 
-    // Ambil kategori aktif
+    // Ambil kategori yang aktif
     function getAktif() {
-        $q = $this->conn->query("SELECT * FROM kategori_obat WHERE status = 'aktif' ORDER BY nama_kategori ASC");
+        $q = $this->conn->query("SELECT * FROM kategori_obat WHERE status = 1 ORDER BY nama_kategori ASC");
         return $q->fetch_all(MYSQLI_ASSOC);
     }
 
-    // Cari data berdasarkan id katefori
+    // Cari data berdasarkan ID kategori
     function findById($id) {
-        $stmt = $this->conn->prepare("SELECT * FROM kategori_obat WHERE id = ?");
+        $stmt = $this->conn->prepare("SELECT * FROM kategori_obat WHERE id_kategori = ?");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $res = $stmt->get_result();
