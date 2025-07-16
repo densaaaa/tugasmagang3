@@ -56,19 +56,18 @@ $kode_obat = $obat->generateKodeObat();
                 <label>Kode Obat</label>
                 <input type="text" class="form-control" id="kode_obat" required />
             </div>
-<div class="mb-3">
-    <label>Kategori</label>
-    <select class="form-control" id="id_kategori" required>
-        <option value="">-- Pilih Kategori --</option>
-        <?php
-        $kategori = $db->query("SELECT * FROM kategori_obat WHERE status = 1");
-        while ($row = $kategori->fetch_assoc()) {
-            echo "<option value='{$row['id_kategori']}'>{$row['nama_kategori']}</option>";
-        }
-        ?>
-    </select>
-</div>
-
+            <div class="mb-3">
+                <label>Kategori</label>
+                <select class="form-control" id="id_kategori" required>
+                    <option value="">-- Pilih Kategori --</option>
+                    <?php
+                    $kategori = $db->query("SELECT * FROM kategori_obat WHERE status = 1");
+                    while ($row = $kategori->fetch_assoc()) {
+                        echo "<option value='{$row['id_kategori']}'>{$row['nama_kategori']}</option>";
+                    }
+                    ?>
+                </select>
+            </div>
             <div class="mb-3">
                 <label>Deskripsi</label>
                 <textarea class="form-control" id="deskripsi" rows="2"></textarea>
