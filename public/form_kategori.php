@@ -20,11 +20,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Kategori Obat</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffffff;
+        }
+
+        div.dataTables_filter {
+            text-align: right !important;
+        }
+
+        div.dataTables_paginate {
+            text-align: right !important;
+            float: right !important;
+        }
+
+        div.dataTables_length {
+            float: left !important;
+        }
+
+        div.dataTables_wrapper .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        div.dataTables_filter {
+            float: right !important;
+            text-align: right !important;
+        }
+
+        div.dataTables_wrapper .row:first-child {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+
+    </style>
 </head>
 
 <body class="bg-light">
@@ -50,29 +88,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         <?php endif; ?>
 
-        <form method="post" class="card p-4 shadow-sm bg-white">
-            <div class="mb-3">
-                <label for="nama_kategori" class="form-label">Nama Kategori</label>
-                <input type="text" name="nama_kategori" id="nama_kategori" class="form-control" required>
+        <form method="post" class="mb-4">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="nama_kategori" class="form-label">Nama Kategori</label>
+                    <input type="text" name="nama_kategori" id="nama_kategori" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="kode_kategori" class="form-label">Kode Kategori</label>
+                    <input type="text" name="kode_kategori" id="kode_kategori" class="form-control" required>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="status" class="form-label">Status</label>
+                    <select name="status" id="status" class="form-select" required>
+                        <option value="1">Aktif</option>
+                        <option value="0">Nonaktif</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label for="kode_kategori" class="form-label">Kode Kategori</label>
-                <input type="text" name="kode_kategori" id="kode_kategori" class="form-control" required>
+            <div class="text-start">
+                <button type="submit" class="btn btn-primary px-4 ">Simpan</button>
             </div>
-
-            <div class="mb-3">
-                <label for="status" class="form-label">Status</label>
-                <select name="status" id="status" class="form-select" required>
-                    <option value="aktif">Aktif</option>
-                    <option value="0">Nonaktif</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
+        <hr />
+        <table id="tableKategori" class="table table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>Kode Kategori</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+        </table>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="assets/main.js"></script>
 </body>
+
 </html>

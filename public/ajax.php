@@ -1,15 +1,17 @@
 <?php
-header('Content-Type: application/json');
 include '../config.php';
 include '../function/Fobat.php';
+include '../function/Fkategori.php';
 include '../function/validasi.php';
 
 $obat = new Obat($db);
+$kategori = new Kategori($db);
 $v = new Validasi();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $aksi = $_POST['aksi'];
 
+    // Simpan obat
     if ($aksi === 'simpan') {
         $data = [
             'nama_obat' => $_POST['nama_obat'],
@@ -38,15 +40,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 
+    // Hapus obat
     if ($aksi === 'hapus') {
         $hapus = $obat->delete($_POST['id']);
         echo json_encode(['status' => $hapus ? 'OK' : 'Gagal']);
         exit;
     }
 
+    // Mengambil data obat
     if ($aksi === 'getAll') {
         $data = $obat->getAll();
         echo json_encode(['data' => $data]);
+        exit;
+    }
+
+    // Mengambil data kategori
+    if ($aksi === 'getKategori') {
+        $data = $kategori->tampil(); // pastikan tampil() mengembalikan array associative
+        echo json_encode(['data' => $data]);
+        exit;
+    }
+
+    // Hapus kategori
+    if ($aksi === 'hapusKategori') {
+        $hapus = $kategori->delete($_POST['id']);
+        echo json_encode(['status' => $hapus ? 'OK' : 'Gagal']);
+        exit;
+    }
+
+    // Simpan kategor ajax
+    if ($aksi === 'simpanKategori') {
+        $data = [
+            'nama_kategori' => $_POST['nama_kategori'],
+            'kode_kategori' => $_POST['kode_kategori'],
+            'status' => $_POST['status']
+        ];
+
+        $cekKosong = $v->validasiKosong($data, ['nama_kategori', 'kode_kategori', 'status']);
+        if ($cekKosong !== true) {
+            echo json_encode(['status' => 'error', 'message' => $cekKosong]);
+            exit;
+        }
+
+        $simpan = $kategori->simpan($data);
+        echo json_encode(['status' => $simpan === 'OK' ? 'OK' : 'Gagal', 'message' => $simpan]);
         exit;
     }
 }
