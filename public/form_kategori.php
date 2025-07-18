@@ -26,43 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Kategori Obat</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #ffffffff;
-        }
-
-        div.dataTables_filter {
-            text-align: right !important;
-        }
-
-        div.dataTables_paginate {
-            text-align: right !important;
-            float: right !important;
-        }
-
-        div.dataTables_length {
-            float: left !important;
-        }
-
-        div.dataTables_wrapper .row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        div.dataTables_filter {
-            float: right !important;
-            text-align: right !important;
-        }
-
-        div.dataTables_wrapper .row:first-child {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
-
-    </style>
+    <link href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
